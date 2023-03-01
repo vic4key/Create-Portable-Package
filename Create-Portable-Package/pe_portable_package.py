@@ -42,5 +42,5 @@ class PEPortablePackage:
       print(e)
     return result
 
-  def create_portable_package(self, directory=".", force=False):
+  def create_portable_package(self, directory: str = ".", force: bool = False):
     self.m_pe_object.create_portable_package(directory, force)

@@ -41,7 +41,7 @@ class PEPackage:
   def _find_shared_libraries(self, object, recursive) -> map:
     raise NotImplementedError("_find_shared_libraries")
 
-  def create_portable_package(self, directory=".", force=False):
+  def create_portable_package(self, directory: str = ".", force: bool = False):
     assert self.m_ready, "The PE file is not loaded"
 
     print("Looking for the dependency shared libraries ...")
@@ -49,6 +49,7 @@ class PEPackage:
     pe_file_name = self._get_file_name()
     package_dir = os.path.join(directory, pe_file_name)
     package_dir += "_package"
+    if force and os.path.isdir(package_dir): shutil.rmtree(package_dir)
     if not os.path.isdir(package_dir): os.makedirs(package_dir)
 
     shared_libraries = self._find_shared_libraries(self.m_object, True)
