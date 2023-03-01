@@ -1,5 +1,6 @@
 from .pe_format import PEPackage
 
+import os
 from elftools.elf.elffile import ELFFile
 from elftools.elf.dynamic import DynamicSection
 import PyVutils as vu
