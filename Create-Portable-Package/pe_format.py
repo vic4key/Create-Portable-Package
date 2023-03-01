@@ -5,7 +5,6 @@ import PyVutils as vu
 class PEPackage:
   ''' PE Package
   '''
-  m_ready = False
   m_object = None
   m_file_path = None
   m_process_id = None
@@ -42,8 +41,6 @@ class PEPackage:
     raise NotImplementedError("_find_shared_libraries")
 
   def create_portable_package(self, directory: str = ".", force: bool = False):
-    assert self.m_ready, "The PE file is not loaded"
-
     print("Looking for the dependency shared libraries ...")
 
     pe_file_name = self._get_file_name()

@@ -12,14 +12,12 @@ class ELFPackage(PEPackage):
     PEPackage.__init__(self, file_path)
     try:
       self.m_object = ELFFile(open(self.m_file_path, "rb"))
-      if self.m_object is None: raise ("Could not load the ELF file.")
-      self.m_ready = True
+      if self.m_object is None: raise RuntimeError("Could not load the ELF file.")
     except Exception as e: print(str(e))
 
   def _find_shared_library(self, file_name: str) -> dict:
-    assert self.m_ready, "the elf file is not loaded"
-
-    if file_name in self.m_loaded_libraries.keys(): return self.m_loaded_libraries[file_name]
+    if file_name in self.m_loaded_libraries.keys():
+      return self.m_loaded_libraries[file_name]
 
     # print(f"Walking: {file_name}")
 
@@ -50,8 +48,6 @@ class ELFPackage(PEPackage):
     return result
 
   def _find_shared_libraries(self, object, recursive) -> map:
-    assert self.m_ready, "the elf file is not loaded"
-
     shared_libraries = {}
 
     for section in object.iter_sections():

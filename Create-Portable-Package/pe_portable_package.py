@@ -38,8 +38,7 @@ class PEPortablePackage:
           result = pe_format_t.linux
         elif data.startswith(bytearray.fromhex("CFFAEDFE")): # Mach-O
           result = pe_format_t.macho
-    except Exception as e:
-      print(e)
+    except Exception as e: print(e)
     return result
 
   def create_portable_package(self, directory: str = ".", force: bool = False):
