@@ -11,7 +11,7 @@
       "module": "Create-Portable-Package",
       "justMyCode": false,
       "args": [
-        "-p", "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
+        "-p", "C:\\Program Files\\ImHex\\imhex.exe",
       ]
     }
   ]
