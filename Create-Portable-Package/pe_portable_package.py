@@ -54,7 +54,7 @@ class PEPortablePackage:
 
     print("Finding for dependency shared libraries ...")
 
-    pe_file_path = self.m_pe_object.get_process_path()
+    pe_file_path = self.m_pe_object.get_file_path()
     pe_file_name = vu.extract_file_name(pe_file_path)
     package_dir = os.path.join(directory, pe_file_name)
     package_dir += "_package"
@@ -72,7 +72,7 @@ class PEPortablePackage:
     index = 0
 
     if len(shared_libraries) > 0:
-      src = self.m_pe_object.get_process_path()
+      src = self.m_pe_object.get_file_path()
       dst = os.path.join(package_dir, pe_file_name)
       shutil.copyfile(src, dst)
 

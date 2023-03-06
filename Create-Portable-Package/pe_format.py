@@ -2,8 +2,6 @@ import os, psutil
 import subprocess as sp
 import PyVutils as vu
 
-# from .pe_portable_package import PEPortablePackage
-
 class PEPackage:
   ''' PE Package
   '''
@@ -27,7 +25,7 @@ class PEPackage:
   def set_parent(self, parent):
     self.m_parent = parent
 
-  def get_process_path(self) -> str:
+  def get_file_path(self) -> str:
     return self.m_file_path
 
   def get_process_id(self) -> int:
