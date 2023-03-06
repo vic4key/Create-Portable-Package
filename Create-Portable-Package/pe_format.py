@@ -8,8 +8,8 @@ class PEPackage:
   m_object = None
   m_file_path = None
   m_process_id = None
-  m_loaded_libraries = {}
-  m_exclusion_patterns = []
+  m_loaded_libraries = dict()
+  m_exclusion_patterns = set()
 
   def __init__(self, file_path: str) -> None:
     pe_file_name = vu.extract_file_name(file_path)
@@ -41,11 +41,16 @@ class PEPackage:
   def _find_shared_libraries(self, object, recursive) -> map:
     raise NotImplementedError("_find_shared_libraries")
 
-  def create_portable_package(self, directory: str = ".", exclusion: str = None, force: bool = False):
-    try:
-      with open(exclusion, "r") as f:
-        self.m_exclusion_patterns = list(filter(lambda line: len(line) > 0, f.read().split("\n")))
-    except: self.m_exclusion_patterns = []
+  def create_portable_package(self, directory: str = ".", exclusion_files: str = None, force: bool = False):
+    if exclusion_files and type(exclusion_files) is str:
+      for exclusion_file in exclusion_files.split(';'):
+        try:
+          with open(exclusion_file, "r") as f:
+            exclusion_patterns = f.read().split("\n")
+            exclusion_patterns = list(map(lambda line: line.strip(), exclusion_patterns))
+            exclusion_patterns = list(filter(lambda line: len(line) > 0, exclusion_patterns))
+            self.m_exclusion_patterns.update(exclusion_patterns)
+        except: pass
     
     print("Looking for the dependency shared libraries ...")
 

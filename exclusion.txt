@@ -1,2 +1,3 @@
 libQt5.*
 libtcl.*
+libc.*

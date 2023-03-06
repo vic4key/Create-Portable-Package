@@ -21,5 +21,5 @@ class PEPortablePackage:
     else:
       raise NotImplementedError("The PE file format is not supported")
 
-  def create_portable_package(self, directory: str = ".", exclusion: str = None, force: bool = True):
-    self.m_pe_object.create_portable_package(directory, exclusion, force)
+  def create_portable_package(self, directory: str = ".", exclusion_files: str = None, force: bool = True):
+    self.m_pe_object.create_portable_package(directory, exclusion_files, force)
