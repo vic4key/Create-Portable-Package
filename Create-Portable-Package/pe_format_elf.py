@@ -12,8 +12,8 @@ class ELFPackage(PEPackage):
   def _list_shared_libraries(self, file_path: str) -> list:
     result = []
 
-    object = ELFFile(open(file_path, "rb"))
-    for section in object.iter_sections():
+    pe = ELFFile(open(file_path, "rb"))
+    for section in pe.iter_sections():
       if not isinstance(section, DynamicSection):
         continue
       if section.num_tags() > 0:
