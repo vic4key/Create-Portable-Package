@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Python",
+      "name": "Python (CLI)",
       "type": "python",
       "request": "launch",
       "module": "Create-Portable-Package",
@@ -14,6 +14,15 @@
         "-f", "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
         "-e", "exclusion_win.txt",
       ]
+    },
+    {
+      "name": "Python (GUI)",
+      "type": "python",
+      "request": "launch",
+      "program": "app.py",
+      "cwd": "${workspaceFolder}/GUI",
+      "justMyCode": false,
+      "args": []
     }
   ]
 }
