@@ -90,9 +90,10 @@ class PEPackage:
     if recursive:
       recursive_shared_libraries = {}
       for e in shared_libraries.values():
-        file_path = os.path.join(e["file_dir"], e["file_name"])
-        l = self._find_shared_libraries(file_path, recursive)
-        recursive_shared_libraries.update(l)
+        if not e is None:
+          file_path = os.path.join(e["file_dir"], e["file_name"])
+          l = self._find_shared_libraries(file_path, recursive)
+          recursive_shared_libraries.update(l)
       shared_libraries.update(recursive_shared_libraries)
 
     return shared_libraries
