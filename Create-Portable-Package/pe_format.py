@@ -37,10 +37,12 @@ class PEPackage:
     for exclusion_file in exclusion_files:
       try:
         with open(exclusion_file, "r") as f:
-          exclusion_patterns = f.read().split("\n")
-          exclusion_patterns = list(map(lambda line: line.strip(), exclusion_patterns))
-          exclusion_patterns = list(filter(lambda line: len(line) > 0, exclusion_patterns))
-          self.m_exclusion_patterns.update(exclusion_patterns)
+          patterns = f.read().split("\n")
+          patterns = list(map(
+            lambda line: line.strip(), patterns))
+          patterns = list(filter(
+            lambda line: len(line) > 0 and not line.startswith("#"), patterns))
+          self.m_exclusion_patterns.update(patterns)
       except: pass
 
     for i, e in enumerate(self.m_exclusion_patterns): print(f"\t{i:3}. Pattern\t'{e}'")
@@ -64,7 +66,7 @@ class PEPackage:
     if file_name in self.m_loaded_libraries.keys():
       return self.m_loaded_libraries[file_name]
 
-    # print(f"\t  Walking '{file_name}'")
+    print(f"\t  Walking '{file_name}'")
 
     real_file_path = self._resolve_shared_library(file_name)
     if real_file_path:
@@ -85,15 +87,18 @@ class PEPackage:
     shared_libraries = {}
 
     for file_name in self._list_shared_libraries(file_path):
-      shared_libraries[file_name] = self._find_shared_library(file_name) 
+      if file_name in self.m_loaded_libraries.keys(): continue
+      shared_library = self._find_shared_library(file_name)
+      if shared_library: shared_libraries[file_name] = shared_library
 
     if recursive:
       recursive_shared_libraries = {}
       for e in shared_libraries.values():
-        if not e is None:
-          file_path = os.path.join(e["file_dir"], e["file_name"])
-          l = self._find_shared_libraries(file_path, recursive)
-          recursive_shared_libraries.update(l)
+        file_name = e["file_name"]
+        if self._is_excluded_file(file_name): continue
+        file_path = os.path.join(e["file_dir"], file_name)
+        items = self._find_shared_libraries(file_path, recursive)
+        recursive_shared_libraries.update(items)
       shared_libraries.update(recursive_shared_libraries)
 
     return shared_libraries
