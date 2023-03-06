@@ -5,11 +5,11 @@ import PyVutils as vu
 class PEPackage:
   ''' PE Package
   '''
+  m_parent  = None
   m_process = None
   m_file_path = None
   m_library_dirs = set()
   m_loaded_libraries = dict()
-  m_parent = None
 
   def __init__(self, file_path: str) -> None:
     pe_file_name = vu.extract_file_name(file_path)
