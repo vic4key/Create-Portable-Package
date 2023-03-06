@@ -11,7 +11,6 @@ class ELFPackage(PEPackage):
 
   def _list_shared_libraries(self, file_path: str) -> list:
     result = []
-
     pe = ELFFile(open(file_path, "rb"))
     for section in pe.iter_sections():
       if not isinstance(section, DynamicSection):
@@ -20,5 +19,4 @@ class ELFPackage(PEPackage):
         for tag in section.iter_tags():
           if tag.entry.d_tag == "DT_NEEDED":
             result.append(tag.needed)
-
     return result
