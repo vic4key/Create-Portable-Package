@@ -9,20 +9,18 @@
       "type": "python",
       "request": "launch",
       "module": "Create-Portable-Package",
-      "justMyCode": false,
       "args": [
         "-f", "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
         "-e", "exclusion_win.txt",
-      ]
+      ],
+      "justMyCode": false
     },
     {
       "name": "Python (GUI)",
       "type": "python",
       "request": "launch",
-      "program": "app.py",
-      "cwd": "${workspaceFolder}/GUI",
-      "justMyCode": false,
-      "args": []
+      "module": "GUI",
+      "justMyCode": false
     }
   ]
 }
