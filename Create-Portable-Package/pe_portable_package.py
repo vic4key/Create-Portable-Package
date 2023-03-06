@@ -1,7 +1,4 @@
 from .pe_format import PEPackage
-from .pe_format_mz import MZPackage
-from .pe_format_mo import MOPackage
-from .pe_format_elf import ELFPackage
 
 import PyVutils as vu
 
@@ -13,10 +10,13 @@ class PEPortablePackage:
   def __init__(self, file_path: str) -> None:
     pe_format = vu.determine_file_format(file_path)
     if pe_format == vu.FileFormat.PE_WIN:
+      from .pe_format_mz import MZPackage
       self.m_pe_object = MZPackage(file_path)
     elif pe_format == vu.FileFormat.PE_LINUX:
+      from .pe_format_elf import ELFPackage
       self.m_pe_object = ELFPackage(file_path)
     elif pe_format == vu.FileFormat.PE_MAC:
+      from .pe_format_mo import MOPackage
       self.m_pe_object = MOPackage(file_path)
     else:
       raise NotImplementedError("The PE file format is not supported")

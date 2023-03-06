@@ -12,7 +12,6 @@
       "justMyCode": false,
       "args": [
         "-p", "C:\\Program Files\\ImHex\\imhex.exe",
-        "-e", "exclusion.txt",
       ]
     }
   ]

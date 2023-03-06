@@ -64,18 +64,18 @@ class PEPackage:
     if file_name in self.m_loaded_libraries.keys():
       return self.m_loaded_libraries[file_name]
 
-    # print(f"Walking: {file_name}")
+    # print(f"\t  Walking '{file_name}'")
 
     real_file_path = self._resolve_shared_library(file_name)
-    if real_file_path is None: raise RuntimeError(f"Could not find '{file_name}' library")
-
-    real_file_name = vu.extract_file_name(real_file_path)
-
-    result = {
-      "file_name": real_file_name,
-      "file_dir": vu.extract_file_directory(real_file_path),
-      "symbolic_name": file_name if file_name != real_file_name else None,
-    }
+    if real_file_path:
+      real_file_name = vu.extract_file_name(real_file_path)
+      result = {
+        "file_name": real_file_name,
+        "file_dir": vu.extract_file_directory(real_file_path),
+        "symbolic_name": file_name if file_name != real_file_name else None,
+      }
+    else:
+      result = None # raise RuntimeError(f"Could not find '{file_name}' library")
 
     self.m_loaded_libraries[file_name] = result
 
@@ -140,6 +140,8 @@ class PEPackage:
       index += 1
 
     for e in shared_libraries.values():
+      if e is None: continue
+
       msg = f"\t{index:3}. "
       file_name = e["file_name"]
       if self._is_excluded_file(file_name):
