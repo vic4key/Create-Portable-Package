@@ -6,7 +6,7 @@ import PyVutils as vu
 def get_current_directory():
 	result = ""
 	try: result = sys._MEIPASS
-	except: result = os.path.abspath(".")
+	except: result = os.path.dirname(os.path.realpath(__file__))
 	return vu.normalize_path(result)
 
 def resources(file):

@@ -42,7 +42,7 @@ from main import Window
 # sys.stdout = LogWrapper()
 # sys.stderr = LogWrapper()
 
-if __name__ == "__main__":
+def main():
 	app = QApplication(sys.argv)
 	win = Window(app)
 
@@ -60,3 +60,6 @@ if __name__ == "__main__":
 	win.show()
 
 	sys.exit(app.exec_())
+
+if __name__ == "__main__":
+	main()
