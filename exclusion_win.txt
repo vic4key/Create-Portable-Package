@@ -1,0 +1,9 @@
+api-ms-win-.*
+ntdll.dll
+USER32.dll
+SHELL32.dll
+GDI32.dll
+KERNEL32.dll
+KERNELBASE.dll
+RPCRT4.dll
+SECHOST.dll
