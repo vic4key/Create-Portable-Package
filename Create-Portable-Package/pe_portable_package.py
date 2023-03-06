@@ -1,4 +1,4 @@
-import os, shutil
+import os, psutil, shutil
 import PyVutils as vu
 
 from .pe_format import PEPackage
@@ -9,7 +9,17 @@ class PEPortablePackage:
   m_pe_object: PEPackage = None
   m_exclusion_patterns = set()
 
-  def __init__(self, file_path: str) -> None:
+  def __init__(self, process_id: int, file_path: str) -> None:
+
+    if file_path is None:
+      assert process_id is not None, "The process id must be specified"
+      for process in psutil.process_iter():
+        if process.pid == process_id:
+          file_path = process.exe()
+          break
+
+    assert file_path is not None, "The file path must be specified"
+
     pe_format = vu.determine_file_format(file_path)
     if pe_format == vu.FileFormat.PE_WIN:
       from .pe_format_mz import MZPackage
