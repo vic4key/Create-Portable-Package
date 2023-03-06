@@ -96,4 +96,6 @@ class PEPackage:
     return shared_libraries
 
   def _list_shared_libraries(self, file_path: str) -> list:
+    ''' List file names of shared libraries (.dll, .so, .dylib, etc) in PE file
+    '''
     raise NotImplementedError("_list_shared_libraries")
