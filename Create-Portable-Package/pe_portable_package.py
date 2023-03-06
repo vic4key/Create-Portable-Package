@@ -16,7 +16,7 @@ class PEPortablePackage:
       self.m_pe_object = MZPackage(file_path)
     elif pe_format == vu.FileFormat.PE_LINUX:
       self.m_pe_object = ELFPackage(file_path)
-    elif pe_format == vu.FileFormat.PE_MACHO:
+    elif pe_format == vu.FileFormat.PE_MAC:
       self.m_pe_object = MOPackage(file_path)
     else:
       raise NotImplementedError("The PE file format is not supported")
