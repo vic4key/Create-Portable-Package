@@ -11,7 +11,7 @@
       "module": "Create-Portable-Package",
       "justMyCode": false,
       "args": [
-        "-p", "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
+        "-f", "C:\\Program Files\\FileZilla FTP Client\\filezilla.exe",
         "-e", "exclusion_win.txt",
       ]
     }
