@@ -54,6 +54,8 @@ class PEPackage:
     # print(f"Walking: {file_name}")
 
     real_file_path = self._find_real_shared_library(file_name)
+    if real_file_path is None: raise RuntimeError(f"Could not find '{file_name}' library")
+
     real_file_name = vu.extract_file_name(real_file_path)
 
     result = {
@@ -112,7 +114,7 @@ class PEPackage:
       print(f"\t{index:3}. Copying '{src}' => '{dst}'")
       index += 1
 
-    for _, e in shared_libraries.items():
+    for e in shared_libraries.values():
       msg = f"\t{index:3}. "
       file_name = e["file_name"]
       if self._is_excluded_file(file_name):
