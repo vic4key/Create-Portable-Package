@@ -1,5 +1,4 @@
 import os, psutil
-import subprocess as sp
 import PyVutils as vu
 
 class PEPackage:
