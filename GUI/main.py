@@ -7,18 +7,17 @@ from PyQt5.QtCore import Qt, QSize, pyqtSignal as Signal, pyqtSlot as Slot
 from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidgetItem, QMessageBox
 
 from utils import *
-from picker import Picker
 from pyabout import AboutDlg
 
 class color_t(str, Enum):
 	# status
 	success = "green"
 	normal  = "black"
-	warn 		= "orange"
-	error 	= "red"
+	warn    = "orange"
+	error   = "red"
 	# color
-	red = "red"
-	orange = "orange"
+	red     = "red"
+	orange  = "orange"
 
 class WSClient: pass
 
