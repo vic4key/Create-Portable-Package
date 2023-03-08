@@ -1,0 +1,3 @@
+[submodule "GUI/pyabout"]
+	path = GUI/pyabout
+	url = https://github.com/vn-os/3rd-py-about.git

@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QListWidgetItem, QMessage
 
 from utils import *
 from picker import Picker
-from about import AboutDlg
+from pyabout import AboutDlg
 
 class color_t(str, Enum):
 	# status
@@ -71,4 +71,8 @@ class Window(QMainWindow, WSClient):
 			pass
 
 	def on_triggered_menu_help_about(self):
-		AboutDlg(self.app).exec_()
+		AboutDlg(
+			name="Create Portable Package",
+			year=2023,
+			repo="https://github.com/vic4key/Create-Portable-Package.git"
+		).exec_()
