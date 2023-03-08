@@ -1,4 +1,12 @@
 # Create-Portable-Package
-Create portable package for an executable file (MZ, ELF, Mach-O)
+Create portable package for an executable file
 
-Note: In-progress ...
+### Features
+
+- [x] Windows
+- [x] Linux
+- [ ] MacOS
+- [x] CLI
+- [ ] GUI
+
+*Note: In-progress ... (if you like it, let join to get it done)*
