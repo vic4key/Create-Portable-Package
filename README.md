@@ -13,9 +13,13 @@ Create portable package for an executable file
 
 ### Installation
 
+>pip install git+https://github.com/vic4key/PyVutils.git
+>
 >git clone https://github.com/vic4key/Create-Portable-Package.git
 >
 >cd Create-Portable-Package
+>
+>pip install -r Create-Portable-Package/requirements.txt
 
 <details>
 <summary>CLI Help</summary>

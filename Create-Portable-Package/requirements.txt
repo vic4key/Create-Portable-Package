@@ -1,2 +1,3 @@
+pefile; platform_system == "Windows"
 psutil
 pyelftools
