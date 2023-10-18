@@ -77,10 +77,16 @@ class PEPackage:
   def _find_shared_libraries(self, file_path: str, recursive) -> map:
     shared_libraries = {}
 
-    for file_name in self._list_shared_libraries(file_path):
-      if not file_name in self.m_loaded_libraries.keys():
-        shared_library = self._find_shared_library(file_name)
-        if shared_library: shared_libraries[file_name] = shared_library
+    shared_library_file_paths = []
+    try:
+      shared_library_file_paths = self._list_shared_libraries(file_path)
+    except Exception as e:
+      print(f"\t  Warning 'Failed to load `{file_path}` library. Reason: `{e}`'")
+
+    for shared_library_file_path in shared_library_file_paths:
+      if not shared_library_file_path in self.m_loaded_libraries.keys():
+        shared_library = self._find_shared_library(shared_library_file_path)
+        if shared_library: shared_libraries[shared_library_file_path] = shared_library
 
     if recursive:
       recursive_shared_libraries = {}
